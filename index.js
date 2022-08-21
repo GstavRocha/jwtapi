@@ -6,8 +6,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-
-const SECRET = "mysecret"
 app.use(bodyParser.json());
 
 app.get('/',(req,res,next) => {
@@ -32,7 +30,7 @@ app.get('/clientes',(req, res, next) => {
 app.post('/login',( req, res) =>{
     if(req.body.user === 'Gustavo' && req.body.password === '123'){
         const id = 1;
-        let token = jwt.sign({id},SECRET, {expiresIn: 300});
+        let token = jwt.sign({id},process.env.SECRET, {expiresIn: 300});
         return res.json({ auth: true, token: token});
     }
     res.status(500).json({message: 'Login Inválido'});
