@@ -1,11 +1,13 @@
 require("dotenv-safe").config();
 const http = require('http');
+const cors = require('cors')
 
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/',(req,res,next) => {
